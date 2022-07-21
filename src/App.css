@@ -20,6 +20,14 @@
   text-align: left;
 }
 
+.side {
+  margin-left: 50px;
+  padding: 20px;
+  background: #eee;
+  text-align: right;
+  border-bottom: 1px solid grey;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
