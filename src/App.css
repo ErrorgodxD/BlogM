@@ -4,9 +4,12 @@
 .black-header {
   display: flex;
   background: #000;
-  width: 100%;
+  width: 250%;
+  height: 60px;
   color: white;
   padding-left: 20px;
+}
+.login-btn {
 }
 .list {
   padding-left: 20px;
@@ -18,6 +21,18 @@
   padding: 20px;
   background: #eee;
   text-align: left;
+}
+
+a {
+  align-items: center;
+  display: flex;
+  color: white;
+  padding-left: 20px;
+  text-decoration-line: none;
+  font-style: normal;
+  font-size: 20px;
+  float: left;
+  padding-right: 33%;
 }
 
 .side {
