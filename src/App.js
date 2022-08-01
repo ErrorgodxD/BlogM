@@ -1,16 +1,16 @@
 import logo from "./logo.svg";
+
 import "./App.css";
 
 import { useState } from "react";
 
 function App() {
-  let post = "주변 맛집";
   let [글제목, 글수정] = useState([
-    "여자친구 만드는 법",
-    "쿨뷰티 미녀 만나는 법",
-    "데이트 예절",
+    "배열테스트2",
+    "배열테스트1",
+    "배열테스트0",
   ]);
-  let [like, likeC] = useState([0, 0, 0]);
+  let [like, setLike] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
   let [title, setTitle] = useState(2);
   let [input, setInput] = useState("");
@@ -19,23 +19,10 @@ function App() {
     current.getMonth() + 1
   }월${current.getDate()}일`;
 
-  function empty() {
-    if (input === "") {
-      input = input.replace(/\s/gi, "");
-      alert("내용을 입력해주세요");
-      return false;
-    } else {
-    }
-  }
-
   return (
     <div className="App">
       <div className="black-header">
         <a href="/">국내 보안 갤러리</a>
-
-        <button type="button" class="btn btn-outline-light">
-          로그인
-        </button>
       </div>
 
       {/* 반복문 안에 모달 여닫기, 좋아요 증가 글 삭제 구현 */}
@@ -55,7 +42,7 @@ function App() {
                   let copy = [...like];
                   copy[i] = copy[i] + 1;
                   e.stopPropagation();
-                  likeC(copy);
+                  setLike(copy);
                 }}
               >
                 👍
@@ -65,6 +52,7 @@ function App() {
 
             <p>{date}에 작성된 글입니다.</p>
 
+            {/* 글삭제 */}
             <button
               onClick={() => {
                 let copy = [...글제목];
@@ -78,6 +66,7 @@ function App() {
         );
       })}
 
+      {/* 인풋 글 등록 */}
       <div className="input-title">
         <input
           type="text"
@@ -89,8 +78,16 @@ function App() {
           onClick={() => {
             let copy = [...글제목];
             copy.unshift(input);
+            if (input === "") {
+              alert("제목을 입력해주세요");
+              return false;
+            }
+
             글수정(copy);
-            empty();
+            if (글수정(copy)) {
+              setLike.push([0]);
+            }
+            like.unshift(0);
           }}
         >
           글등록
@@ -112,7 +109,7 @@ function Modal(props) {
       <p>상세내용</p>
       <button
         onClick={() => {
-          props.글수정(["남자옷브랜드 추천", "대전맛집", "논산핫플"]);
+          props.글수정(["여자친구", "대전맛집", "논산핫플"]);
         }}
       >
         글수정
